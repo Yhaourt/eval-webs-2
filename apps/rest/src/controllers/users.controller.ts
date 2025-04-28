@@ -11,11 +11,15 @@ import {
 import { KeycloakAuthGuard } from '@app/common/auth/keycloak-auth-guard';
 import { UserService } from '@app/common/services/user.service';
 import { CreateUserDto } from '../dto/user.dto';
+import { AuthService } from '@app/common/auth/auth.service';
 
 @Controller('/api/users')
 @UseGuards(KeycloakAuthGuard)
 export class UsersController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly authService: AuthService,
+  ) {}
 
   @Get()
   async list(
@@ -37,9 +41,10 @@ export class UsersController {
 
   @Post()
   async create(@Body() body: CreateUserDto) {
+    const keycloakId = await this.authService.createUser(body);
     return await this.userService.create({
       ...body,
-      keycloakId: Math.random().toString(36).substring(2, 15),
+      keycloakId: keycloakId,
     });
   }
 }

@@ -5,18 +5,29 @@ meta {
 }
 
 post {
-  url: {{REST_URL}}/admin/realms/myrealm/users
+  url: {{KEYCLOAK_URL}}/admin/realms/myrealm/users
   body: json
   auth: none
 }
 
+headers {
+  Authorization: Bearer {{ADMIN_TOKEN}}
+}
+
 body:json {
   {
-    "username": "newuser",
+    "username": "JohnDoe",
     "firstName": "John",
     "lastName": "Doe",
-    "email": "john.doe@example.com",
-    "password": "password"
+    "email": "john.doe1@example.com",
+    "enabled": true,
+    "credentials": [
+      {
+        "type": "password",
+        "value": "password123",
+        "temporary": false
+      }
+    ]
   }
   
 }

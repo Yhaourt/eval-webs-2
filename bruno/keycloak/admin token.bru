@@ -17,3 +17,7 @@ body:form-urlencoded {
   username: admin
   password: admin
 }
+
+script:post-response {
+  bru.setEnvVar("ADMIN_TOKEN",res.body.access_token);
+}
