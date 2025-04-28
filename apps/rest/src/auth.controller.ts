@@ -24,7 +24,6 @@ export class AuthController {
   @Post('login')
   async login(@Body() data: LoginInputDto): Promise<LoginOutputDto> {
     const { email, password } = data;
-
     const response = await fetch(
       `${this.configService.get<string>('KEYCLOAK_URL')}/realms/myrealm/protocol/openid-connect/token`,
       {
