@@ -28,7 +28,6 @@ import { AuthModule } from '@app/common/auth/auth.module';
       database: 'pgdb',
       entities: [UserEntity, RoomEntity, ReservationEntity, NotifEntity],
       synchronize: true,
-      dropSchema: true,
       namingStrategy: new SnakeNamingStrategy(),
     }),
     TypeOrmModule.forFeature([

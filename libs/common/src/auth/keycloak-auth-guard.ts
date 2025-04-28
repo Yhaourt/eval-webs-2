@@ -5,17 +5,32 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { GqlExecutionContext } from '@nestjs/graphql';
+import { Request } from 'express';
+
+interface GqlContext {
+  req: Request;
+}
 
 @Injectable()
 export class KeycloakAuthGuard implements CanActivate {
   constructor(private readonly authService: AuthService) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    // Vérifier le contexte GraphQL
-    const gqlContext = context.getArgByIndex(2); // Récupère le contexte de la requête GraphQL
+    let request: Request;
+    const type = context.getType<string>();
 
-    // Accéder à l'en-tête Authorization dans le contexte de la requête
-    const authHeader = gqlContext?.req?.headers?.authorization;
+    if (type === 'http') {
+      request = context.switchToHttp().getRequest<Request>();
+    } else if (type === 'graphql') {
+      const gqlContext =
+        GqlExecutionContext.create(context).getContext<GqlContext>();
+      request = gqlContext.req;
+    } else {
+      throw new UnauthorizedException('Unsupported request context');
+    }
+
+    const authHeader = request.headers?.authorization;
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       throw new UnauthorizedException(

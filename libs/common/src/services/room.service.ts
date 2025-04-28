@@ -36,6 +36,7 @@ export class RoomService {
   }
 
   async delete(id: string): Promise<void> {
-    await this.roomRepository.delete(id);
+    const room = await this.roomRepository.findOneOrFail({ where: { id } });
+    await this.roomRepository.remove(room);
   }
 }

@@ -5,15 +5,15 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import { LoginInputDto, LoginOutputDto } from './dto/login.dto';
-import { RegisterDto } from './dto/register.dto';
+import { LoginInputDto, LoginOutputDto } from '../dto/login.dto';
+import { RegisterDto } from '../dto/register.dto';
 import * as querystring from 'node:querystring';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserEntity } from '@app/common/entities/user.entity';
 import { ConfigService } from '@nestjs/config';
 
-@Controller('auth')
+@Controller('/api')
 export class AuthController {
   constructor(
     @InjectRepository(UserEntity)

@@ -18,8 +18,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./apps/evalweb/test/jest-e2e.json",
-    "start:all": "concurrently \"nest start rest\" \"nest start graphql\"",
-    "start:all:dev": "concurrently \"nest start rest --watch\" \"nest start graphql --watch\""
+    "launch": "concurrently \"nest start rest\" \"nest start graphql\"",
+    "launch:dev": "concurrently \"nest start rest --watch\" \"nest start graphql --watch\""
   },
   "dependencies": {
     "@nestjs/apollo": "^13.0.4",
@@ -29,6 +29,7 @@
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/typeorm": "^11.0.0",
+    "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "concurrently": "^9.1.2",
     "keycloak-admin": "^1.14.22",

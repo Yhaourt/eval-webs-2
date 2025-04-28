@@ -1,0 +1,19 @@
+meta {
+  name: create
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{REST_URL}}/rooms
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "room",
+    "capacity": 1,
+    "location": "location"
+  }
+}

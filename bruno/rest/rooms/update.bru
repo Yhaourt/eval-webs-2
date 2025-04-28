@@ -1,0 +1,19 @@
+meta {
+  name: update
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{REST_URL}}/rooms/f867e58d-090f-44a4-8622-17a16c2f7236
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "room",
+    "capacity": 1,
+    "location": "location"
+  }
+}

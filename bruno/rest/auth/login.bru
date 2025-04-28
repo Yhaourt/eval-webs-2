@@ -5,7 +5,7 @@ meta {
 }
 
 post {
-  url: {{REST_URL}}/auth/login
+  url: {{REST_URL}}/login
   body: json
   auth: none
 }
@@ -15,4 +15,13 @@ body:json {
     "email": "testuser1@example.com",
     "password": "password"
   }
+}
+
+script:pre-request {
+      
+}
+
+script:post-response {
+  bru.setEnvVar("TOKEN",res.body.access_token);
+  bru.setEnvVar("REFRESH_TOKEN",res.body.refresh_token);
 }

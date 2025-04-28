@@ -47,8 +47,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
-const login_dto_1 = require("./dto/login.dto");
-const register_dto_1 = require("./dto/register.dto");
+const login_dto_1 = require("../dto/login.dto");
+const register_dto_1 = require("../dto/register.dto");
 const querystring = __importStar(require("node:querystring"));
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
