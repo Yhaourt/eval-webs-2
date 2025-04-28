@@ -21,9 +21,7 @@ export class RoomEntity {
   @Column()
   location: string;
 
-  @CreateDateColumn({
-    name: 'created_at',
-  })
+  @CreateDateColumn()
   created_at: Date;
 
   @OneToMany(() => ReservationEntity, (reservation) => reservation.room, {

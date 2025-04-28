@@ -12,17 +12,13 @@ export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({
-    name: 'keycloak_id',
-  })
+  @Column()
   keycloak_id: string;
 
   @Column()
   email: string;
 
-  @CreateDateColumn({
-    name: 'created_at',
-  })
+  @CreateDateColumn()
   created_at: Date;
 
   @OneToMany(() => ReservationEntity, (reservation) => reservation.user, {

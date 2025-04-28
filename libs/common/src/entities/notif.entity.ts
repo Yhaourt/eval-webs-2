@@ -12,9 +12,7 @@ export class NotifEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({
-    name: 'reservation_id',
-  })
+  @Column()
   reservation_id: string;
 
   @Column()
@@ -25,14 +23,10 @@ export class NotifEntity {
   })
   notification_date: Date;
 
-  @Column({
-    name: 'is_sent',
-  })
+  @Column()
   is_sent: boolean;
 
-  @JoinColumn({
-    name: 'reservation_id',
-  })
+  @JoinColumn()
   @ManyToOne(() => ReservationEntity, (reservation) => reservation.notifs)
   reservation: ReservationEntity;
 }

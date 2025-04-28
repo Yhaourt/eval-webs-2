@@ -1,7 +1,7 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UserInputType, UserType } from '../types/user.type';
+import { UserType } from '../types/user.type';
 import { UseGuards } from '@nestjs/common';
 import { KeycloakAuthGuard } from '../auth/keycloak-auth-guard';
 import { UserEntity } from '@app/common/entities/user.entity';
@@ -28,28 +28,5 @@ export class UserResolver {
   @Query(() => UserType, { nullable: true })
   async user(@Args('id') id: string): Promise<UserEntity> {
     return this.userRepo.findOneOrFail({ where: { id } });
-  }
-
-  @Mutation(() => UserType)
-  async createUser(@Args('input') input: UserInputType): Promise<UserEntity> {
-    const newUser = this.userRepo.create(input);
-    const user = await this.userRepo.save(newUser);
-    return this.userRepo.findOneOrFail({ where: { id: user.id } });
-  }
-
-  @Mutation(() => UserType)
-  async updateUser(
-    @Args('id') id: string,
-    @Args('input') input: UserInputType,
-  ): Promise<UserEntity> {
-    await this.userRepo.update({ id }, input);
-    return this.userRepo.findOneByOrFail({ id });
-  }
-
-  @Mutation(() => Boolean)
-  async deleteUser(@Args('id') id: string): Promise<boolean> {
-    const user = await this.userRepo.findOneByOrFail({ id });
-    await this.userRepo.remove(user);
-    return true;
   }
 }

@@ -10,8 +10,13 @@ export class UserType {
   @Field(() => [ReservationType]) reservations: [ReservationType];
 }
 
+@ObjectType()
+export class LoginType {
+  @Field() access_token: string;
+}
+
 @InputType()
-export class UserInputType {
-  @Field() keycloak_id: string;
+export class LoginInputType {
   @Field() email: string;
+  @Field() password: string;
 }

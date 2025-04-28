@@ -5,6 +5,7 @@ import { RoomEntity } from '@app/common/entities/room.entity';
 import { ReservationEntity } from '@app/common/entities/reservation.entity';
 import { NotifEntity } from '@app/common/entities/notif.entity';
 import { ConfigModule } from '@nestjs/config';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ConfigModule } from '@nestjs/config';
       entities: [UserEntity, RoomEntity, ReservationEntity, NotifEntity],
       synchronize: true,
       dropSchema: true,
+      namingStrategy: new SnakeNamingStrategy(),
     }),
     TypeOrmModule.forFeature([
       UserEntity,
