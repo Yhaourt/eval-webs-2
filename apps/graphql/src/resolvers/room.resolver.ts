@@ -1,9 +1,9 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { RoomInputType, RoomType } from '../types/room.type';
 import { UseGuards } from '@nestjs/common';
-import { KeycloakAuthGuard } from '../auth/keycloak-auth-guard';
 import { RoomEntity } from '@app/common/entities/room.entity';
 import { RoomService } from '@app/common/services/room.service';
+import { KeycloakAuthGuard } from '@app/common/auth/keycloak-auth-guard';
 
 @Resolver(() => RoomType)
 @UseGuards(KeycloakAuthGuard)

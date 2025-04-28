@@ -2,9 +2,9 @@ import { Args, Query, Resolver } from '@nestjs/graphql';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserType } from '../types/user.type';
 import { UseGuards } from '@nestjs/common';
-import { KeycloakAuthGuard } from '../auth/keycloak-auth-guard';
 import { UserEntity } from '@app/common/entities/user.entity';
 import { UserService } from '@app/common/services/user.service';
+import { KeycloakAuthGuard } from '@app/common/auth/keycloak-auth-guard';
 
 @Resolver(() => UserType)
 @UseGuards(KeycloakAuthGuard)

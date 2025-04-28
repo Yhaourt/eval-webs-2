@@ -4,9 +4,9 @@ import {
   ReservationType,
 } from '../types/reservation.type';
 import { UseGuards } from '@nestjs/common';
-import { KeycloakAuthGuard } from '../auth/keycloak-auth-guard';
 import { ReservationEntity } from '@app/common/entities/reservation.entity';
 import { ReservationService } from '@app/common/services/reservation.service';
+import { KeycloakAuthGuard } from '@app/common/auth/keycloak-auth-guard';
 
 @Resolver(() => ReservationType)
 @UseGuards(KeycloakAuthGuard)

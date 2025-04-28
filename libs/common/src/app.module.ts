@@ -10,9 +10,11 @@ import { ReservationService } from '@app/common/services/reservation.service';
 import { RoomService } from '@app/common/services/room.service';
 import { UserService } from '@app/common/services/user.service';
 import { NotifService } from '@app/common/services/notif.service';
+import { AuthModule } from '@app/common/auth/auth.module';
 
 @Module({
   imports: [
+    AuthModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
@@ -38,6 +40,7 @@ import { NotifService } from '@app/common/services/notif.service';
   ],
   providers: [UserService, ReservationService, RoomService, NotifService],
   exports: [
+    AuthModule,
     TypeOrmModule,
     UserService,
     ReservationService,
