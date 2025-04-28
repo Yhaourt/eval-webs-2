@@ -1,0 +1,36 @@
+meta {
+  name: create
+  type: graphql
+  seq: 3
+}
+
+post {
+  url: {{GRAPHQL_URL}}
+  body: graphql
+  auth: none
+}
+
+body:graphql {
+  mutation {
+    createRoom(input: {
+      name: "room",
+      capacity: 1,
+      location: "69 Avenue Maréchal Foch 19100 Brive"
+    }) {
+      id
+      name
+      capacity
+      location
+      created_at
+      reservations {
+        id
+        room_id
+        user_id
+        start_time
+        end_time
+        status
+        created_at
+      }
+    }
+  }
+}

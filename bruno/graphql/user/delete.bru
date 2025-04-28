@@ -1,0 +1,17 @@
+meta {
+  name: delete
+  type: graphql
+  seq: 5
+}
+
+post {
+  url: {{GRAPHQL_URL}}
+  body: graphql
+  auth: none
+}
+
+body:graphql {
+  mutation {
+    deleteUser(id: "b9aabba6-59b7-43c1-8866-7ffb286e413d")
+  }
+}
