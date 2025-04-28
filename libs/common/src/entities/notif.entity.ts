@@ -13,16 +13,16 @@ export class NotifEntity {
   id: string;
 
   @Column()
-  reservation_id: string;
+  reservationId: string;
 
   @Column()
   message: string;
 
   @Column()
-  notification_date: Date;
+  notificationDate: Date;
 
   @Column()
-  is_sent: boolean;
+  isSent: boolean;
 
   @JoinColumn()
   @ManyToOne(() => ReservationEntity, (reservation) => reservation.notifs)

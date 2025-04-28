@@ -12,7 +12,7 @@ export class RoomService {
 
   async list(skip: number, take: number): Promise<RoomEntity[]> {
     return this.roomRepository.find({
-      relations: ['reservations'],
+      // relations: ['reservations'],
       skip,
       take,
     });
@@ -21,17 +21,17 @@ export class RoomService {
   async get(id: string): Promise<RoomEntity> {
     return this.roomRepository.findOneOrFail({
       where: { id },
-      relations: ['reservations'],
+      // relations: ['reservations'],
     });
   }
 
-  async create(roomData: Partial<RoomEntity>): Promise<RoomEntity> {
-    const room = this.roomRepository.create(roomData);
+  async create(data: Partial<RoomEntity>): Promise<RoomEntity> {
+    const room = this.roomRepository.create(data);
     return this.roomRepository.save(room);
   }
 
-  async update(id: string, roomData: Partial<RoomEntity>): Promise<RoomEntity> {
-    await this.roomRepository.update(id, roomData);
+  async update(id: string, data: Partial<RoomEntity>): Promise<RoomEntity> {
+    await this.roomRepository.update(id, data);
     return this.get(id);
   }
 

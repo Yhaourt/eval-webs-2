@@ -116,7 +116,7 @@ export class AuthController {
       const userId = locationHeader.split('/').pop();
 
       return this.userRepo.save({
-        keycloak_id: userId,
+        keycloakId: userId,
         email,
       });
     } catch (error) {

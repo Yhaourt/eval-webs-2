@@ -13,13 +13,13 @@ export class UserEntity {
   id: string;
 
   @Column()
-  keycloak_id: string;
+  keycloakId: string;
 
   @Column()
   email: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  createdAt: Date;
 
   @OneToMany(() => ReservationEntity, (reservation) => reservation.user, {
     cascade: true,

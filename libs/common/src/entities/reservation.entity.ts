@@ -10,6 +10,7 @@ import {
 import { UserEntity } from './user.entity';
 import { RoomEntity } from './room.entity';
 import { NotifEntity } from './notif.entity';
+import { ReservationStatus } from '@app/common/enums/reservation-status';
 
 @Entity('reservations')
 export class ReservationEntity {
@@ -17,22 +18,26 @@ export class ReservationEntity {
   id: string;
 
   @Column()
-  user_id: string;
+  userId: string;
 
   @Column()
-  room_id: string;
+  roomId: string;
 
   @Column()
-  start_time: Date;
+  startTime: Date;
 
   @Column()
-  end_time: Date;
+  endTime: Date;
 
-  @Column()
+  @Column({
+    type: 'enum',
+    enum: ReservationStatus,
+    default: ReservationStatus.PENDING,
+  })
   status: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  createdAt: Date;
 
   @JoinColumn()
   @ManyToOne(() => UserEntity, (user) => user.reservations)

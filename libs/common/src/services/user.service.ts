@@ -12,7 +12,7 @@ export class UserService {
 
   async list(skip: number, take: number): Promise<UserEntity[]> {
     return this.userRepository.find({
-      relations: ['reservations'],
+      // relations: ['reservations'],
       skip,
       take,
     });
@@ -21,7 +21,7 @@ export class UserService {
   async get(id: string): Promise<UserEntity> {
     return this.userRepository.findOneOrFail({
       where: { id },
-      relations: ['reservations'],
+      // relations: ['reservations'],
     });
   }
 

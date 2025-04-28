@@ -22,7 +22,7 @@ export class RoomEntity {
   location: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  createdAt: Date;
 
   @OneToMany(() => ReservationEntity, (reservation) => reservation.room, {
     cascade: true,

@@ -12,7 +12,7 @@ export class ReservationService {
 
   async list(skip: number, take: number): Promise<ReservationEntity[]> {
     return this.reservationRepository.find({
-      relations: ['user', 'room', 'notifs'],
+      // relations: ['user', 'room', 'notifs'],
       skip,
       take,
     });
@@ -21,26 +21,27 @@ export class ReservationService {
   async get(id: string): Promise<ReservationEntity> {
     return this.reservationRepository.findOneOrFail({
       where: { id },
-      relations: ['user', 'room', 'notifs'],
+      // relations: ['user', 'room', 'notifs'],
     });
   }
 
-  async create(
-    reservationData: Partial<ReservationEntity>,
-  ): Promise<ReservationEntity> {
-    const reservation = this.reservationRepository.create(reservationData);
+  async create(data: Partial<ReservationEntity>): Promise<ReservationEntity> {
+    const reservation = this.reservationRepository.create(data);
     return this.reservationRepository.save(reservation);
   }
 
   async update(
     id: string,
-    reservationData: Partial<ReservationEntity>,
+    data: Partial<ReservationEntity>,
   ): Promise<ReservationEntity> {
-    await this.reservationRepository.update(id, reservationData);
+    await this.reservationRepository.update(id, data);
     return this.get(id);
   }
 
   async delete(id: string): Promise<void> {
-    await this.reservationRepository.delete(id);
+    const reservation = await this.reservationRepository.findOneOrFail({
+      where: { id },
+    });
+    await this.reservationRepository.remove(reservation);
   }
 }

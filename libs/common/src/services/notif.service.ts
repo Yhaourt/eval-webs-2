@@ -12,7 +12,7 @@ export class NotifService {
 
   async list(skip: number, take: number): Promise<NotifEntity[]> {
     return this.notifRepository.find({
-      relations: ['reservation'],
+      // relations: ['reservation'],
       skip,
       take,
     });
@@ -21,7 +21,7 @@ export class NotifService {
   async get(id: string): Promise<NotifEntity> {
     return this.notifRepository.findOneOrFail({
       where: { id },
-      relations: ['reservation'],
+      // relations: ['reservation'],
     });
   }
 
