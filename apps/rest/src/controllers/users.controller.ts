@@ -10,8 +10,8 @@ import {
 } from '@nestjs/common';
 import { KeycloakAuthGuard } from '@app/common/auth/keycloak-auth-guard';
 import { UserService } from '@app/common/services/user.service';
-import { CreateUserDto } from '../dto/user.dto';
 import { AuthService } from '@app/common/auth/auth.service';
+import { RegisterDto } from '../dto/register.dto';
 
 @Controller('/api/users')
 @UseGuards(KeycloakAuthGuard)
@@ -40,7 +40,7 @@ export class UsersController {
   }
 
   @Post()
-  async create(@Body() body: CreateUserDto) {
+  async create(@Body() body: RegisterDto) {
     const keycloakId = await this.authService.createUser(body);
     return await this.userService.create({
       ...body,

@@ -65,7 +65,7 @@ export class AuthService {
     );
 
     if (!response.ok) {
-      throw new Error('Failed to fetch tokens from Keycloak');
+      throw new UnauthorizedException();
     }
 
     return await response.json();
