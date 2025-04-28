@@ -1,6 +1,4 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import {
   ReservationInputType,
   ReservationType,
@@ -8,45 +6,31 @@ import {
 import { UseGuards } from '@nestjs/common';
 import { KeycloakAuthGuard } from '../auth/keycloak-auth-guard';
 import { ReservationEntity } from '@app/common/entities/reservation.entity';
+import { ReservationService } from '@app/common/services/reservation.service';
 
 @Resolver(() => ReservationType)
 @UseGuards(KeycloakAuthGuard)
 export class ReservationResolver {
-  constructor(
-    @InjectRepository(ReservationEntity)
-    private readonly reservationRepo: Repository<ReservationEntity>,
-  ) {}
+  constructor(private readonly reservationService: ReservationService) {}
 
   @Query(() => [ReservationType])
   async listReservations(
     @Args('skip', { type: () => Number, nullable: true }) skip = 0,
     @Args('limit', { type: () => Number, nullable: true }) limit = 20,
   ): Promise<ReservationEntity[]> {
-    return this.reservationRepo.find({
-      skip,
-      take: limit,
-      relations: ['room', 'user'],
-    });
+    return this.reservationService.list(skip, limit);
   }
 
   @Query(() => ReservationType, { nullable: true })
   async reservation(@Args('id') id: string): Promise<ReservationEntity> {
-    return this.reservationRepo.findOneOrFail({
-      where: { id },
-      relations: ['room', 'user'],
-    });
+    return this.reservationService.get(id);
   }
 
   @Mutation(() => ReservationType)
   async createReservation(
     @Args('input') input: ReservationInputType,
   ): Promise<ReservationEntity> {
-    const newReservation = this.reservationRepo.create(input);
-    const reservation = await this.reservationRepo.save(newReservation);
-    return this.reservationRepo.findOneOrFail({
-      where: { id: reservation.id },
-      relations: ['room', 'user'],
-    });
+    return this.reservationService.create(input);
   }
 
   @Mutation(() => ReservationType)
@@ -54,20 +38,12 @@ export class ReservationResolver {
     @Args('id') id: string,
     @Args('input') input: ReservationInputType,
   ): Promise<ReservationEntity> {
-    await this.reservationRepo.update({ id }, input);
-    return this.reservationRepo.findOneOrFail({
-      where: { id },
-      relations: ['room', 'user'],
-    });
+    return this.reservationService.update(id, input);
   }
 
   @Mutation(() => Boolean)
   async deleteReservation(@Args('id') id: string): Promise<boolean> {
-    const reservation = await this.reservationRepo.findOneOrFail({
-      where: { id },
-      relations: ['room', 'user'],
-    });
-    await this.reservationRepo.remove(reservation);
+    await this.reservationService.delete(id);
     return true;
   }
 }

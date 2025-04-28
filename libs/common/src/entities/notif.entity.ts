@@ -18,9 +18,7 @@ export class NotifEntity {
   @Column()
   message: string;
 
-  @Column({
-    name: 'notification_date',
-  })
+  @Column()
   notification_date: Date;
 
   @Column()

@@ -6,6 +6,10 @@ import { ReservationEntity } from '@app/common/entities/reservation.entity';
 import { NotifEntity } from '@app/common/entities/notif.entity';
 import { ConfigModule } from '@nestjs/config';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { ReservationService } from '@app/common/services/reservation.service';
+import { RoomService } from '@app/common/services/room.service';
+import { UserService } from '@app/common/services/user.service';
+import { NotifService } from '@app/common/services/notif.service';
 
 @Module({
   imports: [
@@ -32,7 +36,13 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
       NotifEntity,
     ]),
   ],
-  providers: [],
-  exports: [TypeOrmModule],
+  providers: [UserService, ReservationService, RoomService, NotifService],
+  exports: [
+    TypeOrmModule,
+    UserService,
+    ReservationService,
+    RoomService,
+    NotifService,
+  ],
 })
 export class AppModule {}

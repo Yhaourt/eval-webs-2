@@ -1,0 +1,22 @@
+meta {
+  name: login
+  type: graphql
+  seq: 3
+}
+
+post {
+  url: {{GRAPHQL_URL}}
+  body: graphql
+  auth: none
+}
+
+body:graphql {
+  mutation {
+    login(
+      email: "test",
+      password: "test"
+    ) {
+      access_token
+    }
+  }
+}

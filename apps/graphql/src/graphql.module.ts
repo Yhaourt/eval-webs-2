@@ -7,6 +7,7 @@ import { ReservationResolver } from './resolvers/reservation.resolver';
 import { RoomResolver } from './resolvers/room.resolver';
 import { AuthModule } from './auth/auth.module';
 import { AppModule } from '@app/common/app.module';
+import { AuthResolver } from './resolvers/auth.resolver';
 
 @Module({
   imports: [
@@ -18,6 +19,6 @@ import { AppModule } from '@app/common/app.module';
     AuthModule,
   ],
   controllers: [],
-  providers: [UserResolver, RoomResolver, ReservationResolver],
+  providers: [AuthResolver, UserResolver, RoomResolver, ReservationResolver],
 })
 export class GraphqlModule {}

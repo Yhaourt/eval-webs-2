@@ -47,6 +47,10 @@ type UserType {
   reservations: [ReservationType!]!
 }
 
+type LoginType {
+  access_token: String!
+}
+
 type Query {
   listUsers(skip: Float, limit: Float): [UserType!]!
   user(id: String!): UserType
@@ -54,28 +58,21 @@ type Query {
   room(id: String!): RoomType
   listReservations(skip: Float, limit: Float): [ReservationType!]!
   reservation(id: String!): ReservationType
-  listNotifs(skip: Float, limit: Float): [NotifType!]!
-  notif(id: String!): NotifType
 }
 
 type Mutation {
-  createUser(input: UserInputType!): UserType!
-  updateUser(id: String!, input: UserInputType!): UserType!
-  deleteUser(id: String!): Boolean!
+  login(input: LoginInputType!): LoginType!
   createRoom(input: RoomInputType!): RoomType!
   updateRoom(id: String!, input: RoomInputType!): RoomType!
   deleteRoom(id: String!): Boolean!
   createReservation(input: ReservationInputType!): ReservationType!
   updateReservation(id: String!, input: ReservationInputType!): ReservationType!
   deleteReservation(id: String!): Boolean!
-  createNotif(input: NotifInputType!): NotifType!
-  updateNotif(id: String!, input: NotifInputType!): NotifType!
-  deleteNotif(id: String!): Boolean!
 }
 
-input UserInputType {
-  keycloak_id: String!
+input LoginInputType {
   email: String!
+  password: String!
 }
 
 input RoomInputType {
@@ -90,11 +87,4 @@ input ReservationInputType {
   start_time: DateTime!
   end_time: DateTime!
   status: String!
-}
-
-input NotifInputType {
-  reservation_id: String!
-  message: String!
-  notification_date: DateTime!
-  is_sent: Boolean!
 }
