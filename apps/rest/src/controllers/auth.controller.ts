@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Post,
-  Body,
-  HttpException,
-  HttpStatus,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Controller, Post, Body, UnauthorizedException } from '@nestjs/common';
 import { LoginInputDto, LoginOutputDto } from '../dto/login.dto';
 import { AuthService } from '@app/common/auth/auth.service';
 
@@ -20,7 +13,7 @@ export class AuthController {
     try {
       const tokenResponse = await this.authService.login(email, password);
       return tokenResponse;
-    } catch (error) {
+    } catch {
       throw new UnauthorizedException();
     }
   }
