@@ -39,4 +39,17 @@ export class RoomService {
     const room = await this.roomRepository.findOneOrFail({ where: { id } });
     await this.roomRepository.remove(room);
   }
+ 
+  
+    async findOne(id: string): Promise<RoomEntity> {
+      const room = await this.roomRepository.findOne({ where: { id } });
+      if (!room) {
+        throw new Error(`Room with id ${id} not found`);
+      }
+      return room;
+    }
+  
+    async findAll(): Promise<RoomEntity[]> {
+      return this.roomRepository.find();
+    }
 }

@@ -1,10 +1,11 @@
 import { Controller } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
 import { NotificationService } from '../services/notification.service';
+import { NotifService } from '@app/common/services/notif.service';
 
 @Controller()
 export class NotificationController {
-  constructor(private readonly notificationService: NotificationService) {}
+  constructor(private readonly notificationService: NotifService) {}
 
   @GrpcMethod('NotificationService', 'CreateNotification')
   async createNotification(data: {
@@ -13,30 +14,30 @@ export class NotificationController {
     message: string;
   }) {
     // vérifie les deux cas : camelCase et snake_case
-    const reservation_id = data.reservationId ?? data.reservation_id;
+    const reservationId = data.reservationId ?? data.reservation_id;
     console.log(
       'createNotification payload:',
       data,
       '→ reservation_id:',
-      reservation_id,
+      reservationId,
     );
 
-    if (!reservation_id) {
+    if (!reservationId) {
       throw new Error('reservation_id is required');
     }
     const notif = await this.notificationService.CreateNotification(
-      reservation_id,
+      reservationId,
       data.message,
     );
     return {
       id: notif.id,
-      reservation_id: notif.reservation_id,
+      reservationId: notif.reservationId,
       message: notif.message,
-      notification_date: {
-        seconds: Math.floor(notif.notification_date.getTime() / 1000),
+      notificationDate: {
+        seconds: Math.floor(notif.notificationDate.getTime() / 1000),
         nanos: 0,
       },
-      is_sent: notif.is_sent,
+      is_sent: notif.isSent,
     };
   }
 
@@ -48,13 +49,13 @@ export class NotificationController {
     );
     return {
       id: notif.id,
-      reservation_id: notif.reservation_id,
+      reservationId: notif.reservationId,
       message: notif.message,
       notification_date: {
-        seconds: Math.floor(notif.notification_date.getTime() / 1000),
+        seconds: Math.floor(notif.notificationDate.getTime() / 1000),
         nanos: 0,
       },
-      is_sent: notif.is_sent,
+      is_sent: notif.isSent,
     };
   }
 

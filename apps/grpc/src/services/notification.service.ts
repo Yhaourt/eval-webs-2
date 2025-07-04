@@ -49,11 +49,11 @@ export class NotificationService {
     reservations.forEach((r) => {
       csvStream.write({
         id: r.id,
-        room_id: r.room_id,
-        user_id: r.user_id,
+        roomId: r.roomId,
+        userId: r.userId,
         status: r.status,
-        start_time: r.start_time.toISOString(),
-        end_time: r.end_time.toISOString(),
+        startTime: r.startTime.toISOString(),
+        endTime: r.endTime.toISOString(),
       });
     });
     csvStream.end();
@@ -77,15 +77,15 @@ export class NotificationService {
   }
 
   async CreateNotification(
-    reservation_id: string,
+    reservationId: string,
     message: string,
   ): Promise<Notif> {
     try {
       const notif = this.notifRepo.create({
-        reservation_id,
+        reservationId,
         message,
-        notification_date: new Date(),
-        is_sent: false,
+        notificationDate: new Date(),
+        isSent: false,
       });
       console.log('notif:', notif);
 
