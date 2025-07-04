@@ -10,10 +10,3 @@ export class RoomType {
   @Field({ name: 'created_at' }) createdAt: Date;
   @Field(() => [ReservationType]) reservations: [ReservationType];
 }
-
-@InputType()
-export class RoomInputType {
-  @Field() name: string;
-  @Field() capacity: number;
-  @Field() location: string;
-}

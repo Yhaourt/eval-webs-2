@@ -61,29 +61,11 @@ type Query {
 }
 
 type Mutation {
-  login(input: LoginInputType!): LoginType!
-  createRoom(input: RoomInputType!): RoomType!
-  updateRoom(id: String!, input: RoomInputType!): RoomType!
+  login(email: String!, password: String!): LoginType!
+  createRoom(name: String!, capacity: Float!, location: String!): RoomType!
+  updateRoom(id: String!, name: String!, capacity: Float!, location: String!): RoomType!
   deleteRoom(id: String!): Boolean!
-  createReservation(user_id: String!, room_id: String!, start_time: DateTime!, end_time: DateTime!): ReservationType!
-  updateReservation(id: String!, input: ReservationInputType!): ReservationType!
+  createReservation(room_id: String!, user_id: String!, start_time: DateTime!, end_time: DateTime!): ReservationType!
+  updateReservation(id: String!, room_id: String!, user_id: String!, start_time: DateTime!, end_time: DateTime!): ReservationType!
   deleteReservation(id: String!): Boolean!
-}
-
-input LoginInputType {
-  email: String!
-  password: String!
-}
-
-input RoomInputType {
-  name: String!
-  capacity: Float!
-  location: String!
-}
-
-input ReservationInputType {
-  room_id: String!
-  user_id: String!
-  start_time: DateTime!
-  end_time: DateTime!
 }

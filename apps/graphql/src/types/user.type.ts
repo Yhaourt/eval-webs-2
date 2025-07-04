@@ -23,9 +23,3 @@ export class UserType {
 export class LoginType {
   @Field() access_token: string;
 }
-
-@InputType()
-export class LoginInputType {
-  @Field() email: string;
-  @Field() password: string;
-}

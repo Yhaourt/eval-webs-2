@@ -15,7 +15,7 @@
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "dotenv -e .env jest --config jest.config.js --coverage",
     "launch": "concurrently \"nest start rest\" \"nest start graphql\" \"nest start grpc --watch\"",
-    "launch:dev": "concurrently \"nest start rest --watch\" \"nest start graphql --watch\" \"nest start grpc --watch\""
+    "launch:dev": "concurrently \"nest start rest --watch\" \"nest start graphql --watch\""
   },
   "dependencies": {
     "@fast-csv/format": "^5.0.2",
@@ -29,9 +29,11 @@
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/typeorm": "^11.0.0",
+    "axios": "^1.10.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "concurrently": "^9.1.2",
+    "csv-parser": "^3.2.0",
     "dotenv": "^16.4.7",
     "dotenv-cli": "^8.0.0",
     "keycloak-admin": "^1.14.22",
@@ -41,8 +43,7 @@
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "typeorm": "^0.3.22",
-    "typeorm-naming-strategies": "^4.1.0",
-    "csv-parser": "^3.2.0"
+    "typeorm-naming-strategies": "^4.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
