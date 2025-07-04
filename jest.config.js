@@ -5,7 +5,7 @@ module.exports = {
     '<rootDir>/libs/tests/setup.js',
     '<rootDir>/libs/tests/cleanup.js',
   ],
-  testRegex: '.*\\.(spec|test)\\.ts$', // détecte tous les fichiers .spec.ts ou .test.ts
+  testRegex: '.*\\.(spec|test)\\.js$', // détecte tous les fichiers .spec.ts ou .test.ts
   moduleFileExtensions: ['ts', 'js', 'json'],
   collectCoverageFrom: ['**/*.(t|j)s', '!**/node_modules/**', '!**/dist/**'],
   coverageDirectory: './coverage',

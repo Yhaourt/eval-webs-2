@@ -36,7 +36,9 @@
     "typeorm": "^0.3.22",
     "typeorm-naming-strategies": "^4.1.0",
     "dotenv": "^16.4.7",
-    "dotenv-cli": "^8.0.0"
+    "dotenv-cli": "^8.0.0",
+    "@grpc/grpc-js": "^1.13.0",
+    "@grpc/proto-loader": "^0.7.13"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

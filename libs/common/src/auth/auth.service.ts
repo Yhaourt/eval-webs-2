@@ -138,10 +138,12 @@ export class AuthService {
     }
 
     const locationHeader = response.headers.get('Location');
-    if (!locationHeader) {
-      throw new Error('User created but ID not found in response');
+    const userId = locationHeader?.split('/').pop();
+
+    if (!userId) {
+      throw new Error('User ID could not be extracted from Location header');
     }
 
-    return locationHeader.split('/').pop();
+    return userId;
   }
 }

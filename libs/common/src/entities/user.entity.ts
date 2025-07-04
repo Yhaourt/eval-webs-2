@@ -4,6 +4,7 @@ import {
   Column,
   CreateDateColumn,
   OneToMany,
+  UpdateDateColumn,
 } from 'typeorm';
 import { ReservationEntity } from './reservation.entity';
 
@@ -12,7 +13,7 @@ export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ unique: true })
   keycloakId: string;
 
   @Column()
@@ -20,6 +21,9 @@ export class UserEntity {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @OneToMany(() => ReservationEntity, (reservation) => reservation.user, {
     cascade: true,
