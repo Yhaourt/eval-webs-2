@@ -43,6 +43,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/rest/tsconfig.app.json"
       }
+    },
+    "grpc": {
+      "type": "application",
+      "root": "apps/grpc",
+      "entryFile": "main",
+      "sourceRoot": "apps/grpc/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/grpc/tsconfig.app.json"
+      }
     }
   },
   "monorepo": true,
