@@ -9,10 +9,7 @@ import { KeycloakAuthGuard } from '@app/common/auth/keycloak-auth-guard';
 @Resolver(() => UserType)
 @UseGuards(KeycloakAuthGuard)
 export class UserResolver {
-  constructor(
-    @InjectRepository(UserEntity)
-    private readonly userService: UserService,
-  ) {}
+  constructor(private readonly userService: UserService) {}
 
   @Query(() => [UserType])
   async listUsers(

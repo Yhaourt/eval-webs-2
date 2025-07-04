@@ -3,11 +3,20 @@ import { ReservationType } from './reservation.type';
 
 @ObjectType()
 export class UserType {
-  @Field(() => ID) id: string;
-  @Field() keycloak_id: string;
-  @Field() email: string;
-  @Field() created_at: Date;
-  @Field(() => [ReservationType]) reservations: [ReservationType];
+  @Field(() => ID)
+  id: string;
+
+  @Field({ name: 'keycloak_id' })
+  keycloakId: string;
+
+  @Field()
+  email: string;
+
+  @Field({ name: 'created_at' })
+  createdAt: Date;
+
+  @Field(() => [ReservationType])
+  reservations: ReservationType[];
 }
 
 @ObjectType()

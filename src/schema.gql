@@ -65,7 +65,7 @@ type Mutation {
   createRoom(input: RoomInputType!): RoomType!
   updateRoom(id: String!, input: RoomInputType!): RoomType!
   deleteRoom(id: String!): Boolean!
-  createReservation(input: ReservationInputType!): ReservationType!
+  createReservation(user_id: String!, room_id: String!, start_time: DateTime!, end_time: DateTime!): ReservationType!
   updateReservation(id: String!, input: ReservationInputType!): ReservationType!
   deleteReservation(id: String!): Boolean!
 }
@@ -86,5 +86,4 @@ input ReservationInputType {
   user_id: String!
   start_time: DateTime!
   end_time: DateTime!
-  status: String!
 }

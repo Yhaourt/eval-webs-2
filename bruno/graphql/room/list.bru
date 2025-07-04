@@ -12,21 +12,12 @@ post {
 
 body:graphql {
   query {
-    listRooms(skip: 2, limit: 10) {
+    listRooms(skip: 0, limit: 10) {
       id
       name
       capacity
       location
       created_at
-      reservations {
-        id
-        room_id
-        user_id
-        start_time
-        end_time
-        status
-        created_at
-      }
     }
   }
 }

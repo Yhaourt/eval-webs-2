@@ -21,7 +21,8 @@ const graphqlQuery = async (query, variables, token) => {
       },
     }
   );
-
+  console.log(response.status)
+  console.log(response)
   if (response.data.errors) {
     //console.log(response.data.errors)
     throw response.data.errors;

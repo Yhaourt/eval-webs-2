@@ -7,8 +7,8 @@ export class NotifType {
   @Field() reservation_id: string;
   @Field() message: string;
   @Field() notification_date: Date;
-  @Field() is_sent: boolean;
-  @Field() created_at: Date;
+  @Field({ name: 'is_sent' }) isSent: boolean;
+  @Field({ name: 'created_at' }) createdAt: Date;
   @Field(() => ReservationType) reservation: ReservationType;
 }
 

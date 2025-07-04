@@ -28,9 +28,17 @@ export class ReservationResolver {
 
   @Mutation(() => ReservationType)
   async createReservation(
-    @Args('input') input: ReservationInputType,
+    @Args('user_id') userId: string,
+    @Args('room_id') roomId: string,
+    @Args('start_time') startTime: Date,
+    @Args('end_time') endTime: Date,
   ): Promise<ReservationEntity> {
-    return this.reservationService.create(input);
+    return this.reservationService.create({
+      userId,
+      roomId,
+      startTime,
+      endTime,
+    });
   }
 
   @Mutation(() => ReservationType)
@@ -38,7 +46,12 @@ export class ReservationResolver {
     @Args('id') id: string,
     @Args('input') input: ReservationInputType,
   ): Promise<ReservationEntity> {
-    return this.reservationService.update(id, input);
+    return this.reservationService.update(id, {
+      userId: input.user_id,
+      roomId: input.room_id,
+      startTime: input.start_time,
+      endTime: input.end_time,
+    });
   }
 
   @Mutation(() => Boolean)
